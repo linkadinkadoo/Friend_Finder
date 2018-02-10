@@ -42,7 +42,7 @@
         <div class="form-group ion-text">
             <h3>Question 1</h3>
             <h5>You would let 50,000 perish if you could save the life of your true love.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q1">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -53,7 +53,7 @@
             <br>
             <h3>Question 2</h3>
             <h5>You would rather stay inside watching TV shows than try something new like windsurfing.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q2">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -63,7 +63,7 @@
             </select>
             <h3>Question 3</h3>
             <h5>If you could choose a superpower, it would be the ability to manipulate people's will.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q3">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -73,7 +73,7 @@
             </select>
             <h3>Question 4</h3>
             <h5>You are a go-getter. (Be honest)</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q4">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -83,7 +83,7 @@
             </select>
             <h3>Question 5</h3>
             <h5>You are affectionate.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q5">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -93,7 +93,7 @@
             </select>
             <h3>Question 6</h3>
             <h5>You would allow your fingernails to be slowly pulled out for $1,000,000.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q6">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -103,7 +103,7 @@
             </select>
             <h3>Question 7</h3>
             <h5>In order to save your relationship, you would agree to rob a bank with your true love.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q7">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -113,7 +113,7 @@
             </select>
             <h3>Question 8</h3>
             <h5>You enjoy long walks on the beach.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q8">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -123,7 +123,7 @@
             </select>
             <h3>Question 9</h3>
             <h5>You are usually dominant in relationships.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q9">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -133,7 +133,7 @@
             </select>
             <h3>Question 10</h3>
             <h5>You think it's ok to get free cable.</h5>
-            <select class="custom-select mb-3 w-100 foc inputGPU" id="gpu">
+            <select class="" id="q10">
                 <option value="0" selected>Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -143,7 +143,7 @@
             </select>
         </div>
         <div class="text-center">
-                <a href=""><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-heart"></span> Submit</button></a>
+                <a href=""><button type="button" class="btn btn-lg btn-primary submit"><span class="glyphicon glyphicon-heart"></span> Submit</button></a>
               </div>
               <br>
     </div>
@@ -166,9 +166,21 @@
       // Here we grab the form elements
       var newFriend = {
         friendName: $("#name").val().trim(),
-        friendEmail: $("#email").val().trim(),
-        friendID: $("#id").val().trim()
-      };
+        friendPhoto: $("#photo").val().trim(),
+        friendQs:[
+                    $('#q1').val(),
+                    $('#q2').val(),
+                    $('#q3').val(),
+                    $('#q4').val(),
+                    $('#q5').val(),
+                    $('#q6').val(),
+                    $('#q7').val(),
+                    $('#q8').val(),
+                    $('#q9').val(),
+                    $('#q10').val()
+                 ]
+            };
+
 
       console.log(newFriend);
 
@@ -177,14 +189,23 @@
       // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
       // depending on if a tables is available or not.
 
-      $.post("/api/tables", newFriend,
+      $.post("/api/friends", newFriend,
         function(data) {
-
+            console.log(data);
           // Clear the form when submitting
           $("#name").val("");
-          $("#phone").val("");
+          $("#photo").val("");
           $("#email").val("");
-          $("#id").val("");
+          $("#q1").val("");
+          $("#q2").val("");
+          $("#q3").val("");
+          $("#q4").val("");
+          $("#q5").val("");
+          $("#q6").val("");
+          $("#q7").val("");
+          $("#q8").val("");
+          $("#q9").val("");
+          $("#q10").val("");
 
         });
 

@@ -165,9 +165,9 @@
 
       // Here we grab the form elements
       var newFriend = {
-        friendName: $("#name").val().trim(),
-        friendPhoto: $("#photo").val().trim(),
-        friendQs:[
+        name: $("#name").val().trim(),
+        photo: $("#photo").val().trim(),
+        scores:[
                     $('#q1').val(),
                     $('#q2').val(),
                     $('#q3').val(),
@@ -195,7 +195,6 @@
           // Clear the form when submitting
           $("#name").val("");
           $("#photo").val("");
-          $("#email").val("");
           $("#q1").val("");
           $("#q2").val("");
           $("#q3").val("");
